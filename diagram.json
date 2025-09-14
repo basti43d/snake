@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "basti",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": -31.95,
+      "left": -6,
+      "attrs": { "builder": "pico-sdk" }
+    },
+    {
+      "type": "wokwi-max7219-matrix",
+      "id": "matrix1",
+      "top": -95.4,
+      "left": -197.79,
+      "attrs": { "chain": "1" }
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick1",
+      "top": -298.2,
+      "left": 53.4,
+      "attrs": {}
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -162.44, "left": -38.4, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -115.2, "left": 18.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "matrix1:DIN", "pico:GP19", "green", [ "h28.8", "v278.4", "h153.6", "v-67.2" ] ],
+    [ "matrix1:CS", "pico:GP17", "green", [ "h48", "v259.2", "h124.8", "v-28.8" ] ],
+    [ "matrix1:CLK", "pico:GP18", "green", [ "h19.2", "v268.8", "h172.8", "v-67.2" ] ],
+    [ "matrix1:V+", "vcc1:VCC", "red", [ "h0" ] ],
+    [ "vcc1:VCC", "joystick1:VCC", "red", [ "v0", "h96" ] ],
+    [ "matrix1:GND", "gnd1:GND", "black", [ "h86.4", "v-48" ] ],
+    [ "joystick1:GND", "gnd1:GND", "black", [ "v0" ] ],
+    [ "joystick1:VERT", "pico:GP27", "green", [ "v0" ] ],
+    [ "joystick1:HORZ", "pico:GP26", "green", [ "v0" ] ],
+    [ "joystick1:SEL", "pico:GP22", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
